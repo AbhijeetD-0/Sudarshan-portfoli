@@ -1,0 +1,553 @@
+/* ==========================================================================
+   Welcome Gate Modal & Spider Drop Intro
+   Standalone Modular Stylesheet
+   ========================================================================== */
+
+/* Background Page Lock & Blur while Welcome Gate is Active */
+body.gate-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+body.gate-active #header,
+body.gate-active #main-content,
+body.gate-active footer,
+body.gate-active .back-to-top,
+body.gate-active .frosted-bg-mesh {
+  filter: blur(14px) brightness(0.5);
+  pointer-events: none !important;
+  user-select: none !important;
+  transition: filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Base Fullscreen Overlay */
+.welcome-gate-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 20%, rgba(15, 23, 42, 0.96) 0%, rgba(2, 6, 23, 0.98) 70%, #01040a 100%);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem 1rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.75s ease, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  color: #f1f5f9;
+}
+
+.welcome-gate-overlay.gate-dismissed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: scale(1.03);
+}
+
+/* Ambient Background Web Patterns */
+.gate-web-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.web-corner {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  opacity: 0.12;
+  stroke: #38bdf8;
+  filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.4));
+  transition: opacity 0.5s ease;
+}
+
+.web-corner-top-left {
+  top: -40px;
+  left: -40px;
+}
+
+.web-corner-top-right {
+  top: -40px;
+  right: -40px;
+  transform: scaleX(-1);
+}
+
+.web-ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.web-orb-1 {
+  width: 350px;
+  height: 350px;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15), rgba(99, 102, 241, 0.08), transparent 70%);
+  animation: gateOrbFloat 8s ease-in-out infinite alternate;
+}
+
+@keyframes gateOrbFloat {
+  0% { transform: translate(-50%, 0) scale(1); }
+  100% { transform: translate(-50%, 25px) scale(1.15); }
+}
+
+/* ==========================================================================
+   Spider Drop & Silk Animation
+   ========================================================================== */
+.spider-rig-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Glowing Spider Silk */
+.spider-silk {
+  width: 2px;
+  height: 0px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.1) 0%, rgba(56, 189, 248, 0.7) 60%, #a855f7 100%);
+  box-shadow: 0 0 8px rgba(56, 189, 248, 0.8), 0 0 16px rgba(168, 85, 247, 0.5);
+  transform-origin: top center;
+  transition: height 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Spider Body Wrapper */
+.spider-avatar {
+  margin-top: -2px;
+  width: 58px;
+  height: 58px;
+  position: relative;
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.7)) drop-shadow(0 8px 16px rgba(0, 0, 0, 0.6));
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.4s ease;
+  animation: spiderGentleSwing 4s ease-in-out infinite alternate 1.5s;
+}
+
+@keyframes spiderGentleSwing {
+  0% { transform: rotate(-3deg) translateY(0); }
+  50% { transform: rotate(3deg) translateY(3px); }
+  100% { transform: rotate(-2deg) translateY(-2px); }
+}
+
+/* Spider SVG internal styling */
+.spider-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.spider-svg .spider-body {
+  fill: #090d16;
+  stroke: #38bdf8;
+  stroke-width: 1.5;
+}
+
+.spider-svg .spider-core {
+  fill: url(#spiderGlowGradient);
+}
+
+.spider-svg .spider-eyes {
+  fill: #38bdf8;
+  filter: drop-shadow(0 0 4px #38bdf8);
+}
+
+.spider-svg .spider-leg {
+  stroke: #60a5fa;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+/* When Animation Starts */
+.welcome-gate-overlay.anim-started .spider-silk {
+  height: 75px;
+}
+
+.welcome-gate-overlay.anim-started .spider-avatar {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Exit climb animation */
+.welcome-gate-overlay.spider-climbing .spider-silk {
+  height: 0px !important;
+  transition: height 0.6s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+}
+
+.welcome-gate-overlay.spider-climbing .spider-avatar {
+  transform: translateY(-90px) scale(0.6);
+  opacity: 0;
+  transition: all 0.6s ease;
+}
+
+/* ==========================================================================
+   Welcome Content & Gate Card
+   ========================================================================== */
+.gate-content-wrap {
+  position: relative;
+  z-index: 10;
+  max-width: 480px;
+  width: 100%;
+  margin: 85px auto 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(25px) scale(0.96);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s;
+}
+
+.welcome-gate-overlay.anim-started .gate-content-wrap {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Glowing Intro Header */
+.gate-header {
+  margin-bottom: 1.5rem;
+}
+
+.gate-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  color: #7dd3fc;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 0 16px rgba(56, 189, 248, 0.2);
+}
+
+.gate-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #38bdf8;
+  box-shadow: 0 0 8px #38bdf8;
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+.gate-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.85rem;
+  font-weight: 800;
+  line-height: 1.25;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.gate-title-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 45%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.gate-subtitle {
+  font-size: 0.9rem;
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* The Spider-Web Themed Gate Card */
+.gate-card {
+  width: 100%;
+  position: relative;
+  background: rgba(11, 19, 38, 0.82);
+  border: 1px solid rgba(56, 189, 248, 0.22);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border-radius: 20px;
+  padding: 2rem 1.75rem;
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.8),
+              0 0 30px -5px rgba(56, 189, 248, 0.15),
+              inset 0 1px 1px rgba(255, 255, 255, 0.15);
+  text-align: left;
+  overflow: hidden;
+}
+
+/* Subtle Glowing Corner Accents on Card */
+.gate-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.6) 30%, rgba(168, 85, 247, 0.6) 70%, transparent);
+}
+
+.gate-card-web-accent {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 120px;
+  height: 120px;
+  opacity: 0.08;
+  pointer-events: none;
+  stroke: #38bdf8;
+}
+
+/* Form Groups & Inputs */
+.gate-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.gate-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.gate-label {
+  font-size: 0.825rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gate-label-req {
+  color: #38bdf8;
+  font-size: 0.75rem;
+}
+
+.gate-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gate-input-icon {
+  position: absolute;
+  left: 1rem;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  transition: color 0.25s ease;
+}
+
+.gate-input {
+  width: 100%;
+  padding: 0.85rem 2.6rem 0.85rem 2.85rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 12px;
+  color: #f8fafc;
+  font-size: 0.925rem;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.gate-input::placeholder {
+  color: #64748b;
+  font-size: 0.875rem;
+}
+
+.gate-input:focus {
+  border-color: #38bdf8;
+  background: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.2), 0 0 16px rgba(56, 189, 248, 0.15);
+}
+
+.gate-input:focus ~ .gate-input-icon {
+  color: #38bdf8;
+}
+
+/* Valid / Invalid Status Icon inside Input */
+.gate-input-status {
+  position: absolute;
+  right: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 0.2s ease;
+}
+
+.gate-input-group.is-valid .gate-input {
+  border-color: rgba(52, 211, 153, 0.5);
+}
+
+.gate-input-group.is-valid .gate-input-status {
+  opacity: 1;
+  transform: scale(1);
+  color: #34d399;
+}
+
+.gate-input-group.is-invalid .gate-input {
+  border-color: rgba(248, 113, 113, 0.6);
+}
+
+.gate-input-group.is-invalid .gate-input-status {
+  opacity: 1;
+  transform: scale(1);
+  color: #f87171;
+}
+
+.gate-error-hint {
+  font-size: 0.75rem;
+  color: #f87171;
+  display: none;
+  margin-top: 0.2rem;
+}
+
+.gate-input-group.is-invalid .gate-error-hint {
+  display: block;
+}
+
+/* Submit Action Button */
+.gate-submit-btn {
+  margin-top: 0.5rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.95rem 1.5rem;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: 0.02em;
+  color: #020617;
+  background: linear-gradient(135deg, #ffffff 0%, #bae6fd 50%, #93c5fd 100%);
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 10px 25px -5px rgba(56, 189, 248, 0.4), 0 0 12px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.gate-submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(56, 189, 248, 0.6), 0 0 20px rgba(56, 189, 248, 0.5);
+  background: linear-gradient(135deg, #ffffff 0%, #7dd3fc 50%, #60a5fa 100%);
+}
+
+.gate-submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.gate-submit-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  background: #334155;
+  color: #94a3b8;
+  box-shadow: none;
+}
+
+.gate-btn-spinner {
+  display: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(2, 6, 23, 0.3);
+  border-top-color: #020617;
+  border-radius: 50%;
+  animation: gateSpin 0.75s linear infinite;
+}
+
+@keyframes gateSpin {
+  to { transform: rotate(360deg); }
+}
+
+.gate-submit-btn.is-loading .gate-btn-spinner {
+  display: inline-block;
+}
+
+.gate-submit-btn.is-loading .gate-btn-text,
+.gate-submit-btn.is-loading .gate-btn-arrow {
+  display: none;
+}
+
+/* Footer / Skip Link */
+.gate-footer-links {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.gate-skip-btn {
+  background: none;
+  border: none;
+  color: #94a3b8;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.gate-skip-btn:hover {
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.08);
+}
+
+.gate-privacy-note {
+  font-size: 0.725rem;
+  color: #64748b;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 520px) {
+  .welcome-gate-overlay {
+    padding: 1rem 0.85rem;
+  }
+  .gate-content-wrap {
+    margin-top: 75px;
+  }
+  .gate-title {
+    font-size: 1.55rem;
+  }
+  .gate-card {
+    padding: 1.5rem 1.25rem;
+  }
+}
