@@ -35,6 +35,9 @@
 
   <!-- Modular Welcome Gate & Spider Drop Styles -->
   <link rel="stylesheet" href="/welcome-gate.css">
+
+  <!-- Modular 3D Rotating Carousel Experience Showcase Styles -->
+  <link rel="stylesheet" href="/experience-carousel.css">
 </head>
 <body>
 
@@ -317,184 +320,263 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- Professional Experience Section                                           -->
+    <!-- Professional Experience Section (3D Carousel Showcase)                    -->
     <!-- ========================================================================= -->
     <section class="section" id="experience" aria-label="Professional Experience">
       <div class="container">
         
         <div class="section-header reveal">
-          <span class="section-tag">Career History</span>
+          <span class="section-tag">Interactive Showcase</span>
           <h2 class="section-title">Professional Experience</h2>
           <p class="section-description">
-            A track record of customer satisfaction, sales achievements, and accurate operational reporting.
+            A dynamic 3D showcase of my roles across retail operations, insurance management, and client sales.
           </p>
         </div>
 
-        <div class="timeline-wrapper">
-          <div class="timeline-line"></div>
+        <!-- 3D Carousel Component Container -->
+        <div class="experience-3d-wrapper reveal" id="experience-carousel">
+          
+          <!-- Quick Role Selector Tabs -->
+          <div class="exp-quick-tabs" role="tablist" aria-label="Experience Roles">
+            <button class="exp-tab-btn active" role="tab" aria-selected="true" data-index="0">
+              <span class="exp-tab-dot"></span>
+              <span>Sumo Save Retail (CSA)</span>
+            </button>
+            <button class="exp-tab-btn" role="tab" aria-selected="false" data-index="1">
+              <span class="exp-tab-dot"></span>
+              <span>Bajaj Allianz (Manager)</span>
+            </button>
+            <button class="exp-tab-btn" role="tab" aria-selected="false" data-index="2">
+              <span class="exp-tab-dot"></span>
+              <span>Freelance Sales &amp; Marketing</span>
+            </button>
+          </div>
 
-          <!-- Role 1: Sumo Save -->
-          <article class="timeline-item reveal" id="exp-sumosave">
-            <div class="timeline-node" title="Completed Role"></div>
-            
-            <div class="timeline-card">
-              <div class="timeline-card-header">
+          <!-- 3D Carousel Viewport Stage -->
+          <div class="carousel-viewport" aria-live="polite">
+            <div class="carousel-stage">
+              
+              <!-- Card 1: Sumo Save Retail Ventures -->
+              <article class="exp-card-3d is-active" data-index="0" id="card-sumosave" aria-label="Sumo Save Experience">
                 <div>
-                  <h3 class="role-title">Customer Service Associate (CSA)</h3>
-                  <div class="company-name">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-                      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                  <div class="exp-card-header">
+                    <div>
+                      <h3 class="exp-role-title">Customer Service Associate (CSA)</h3>
+                      <div class="exp-company">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                          <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                        </svg>
+                        <span>Sumo Save Retail Ventures Private Ltd</span>
+                      </div>
+                    </div>
+                    <span class="exp-badge-pill badge-period-neon">
+                      May 2025 – Aug 2026
+                    </span>
+                  </div>
+
+                  <div class="exp-location-row">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span>Sumo Save Retail Ventures Private Ltd</span>
+                    <span>Alipore, Kolkata, West Bengal &bull; <strong>Full-Time</strong></span>
+                  </div>
+
+                  <div class="exp-responsibilities">
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Managing retail customer service and swift query resolution for incoming store shoppers.</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Handling day-to-day store operations and ensuring clean customer flow and inventory alignment.</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Conducting daily reporting and operational data management using Advanced Excel (VLOOKUP &amp; Pivots).</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Maintaining consistent customer satisfaction and delivering smooth, high-retention service standards.</span>
+                    </div>
                   </div>
                 </div>
-                <span class="role-badge badge-period">May 2025 – August 2026 (Exit: 28 Aug 2026)</span>
-              </div>
 
-              <div class="timeline-location">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>Alipore, Kolkata, West Bengal &bull; <strong>May 2025 – August 2026 (Exit: 28 Aug 2026)</strong></span>
-              </div>
+                <div class="exp-tags-row">
+                  <span class="exp-skill-tag">Store Operations</span>
+                  <span class="exp-skill-tag">Customer Query Resolution</span>
+                  <span class="exp-skill-tag">Advanced Excel Reporting</span>
+                  <span class="exp-skill-tag">Floor Coordination</span>
+                </div>
+              </article>
 
-              <div class="timeline-responsibilities">
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Managing retail customer service and query resolution for incoming store shoppers.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Handling day-to-day store operations and ensuring clean customer flow.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Conducting daily reporting and data management using Advanced Excel.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Maintaining consistent customer satisfaction and delivering smooth service operations.</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Role 2: Bajaj Allianz -->
-          <article class="timeline-item reveal" id="exp-bajaj">
-            <div class="timeline-node"></div>
-            
-            <div class="timeline-card">
-              <div class="timeline-card-header">
+              <!-- Card 2: Bajaj Allianz Life Insurance -->
+              <article class="exp-card-3d is-right" data-index="1" id="card-bajaj" aria-label="Bajaj Allianz Experience">
                 <div>
-                  <h3 class="role-title">Insurance Manager</h3>
-                  <div class="company-name">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                  <div class="exp-card-header">
+                    <div>
+                      <h3 class="exp-role-title">Insurance Manager</h3>
+                      <div class="exp-company">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                        </svg>
+                        <span>Bajaj Allianz Life Insurance</span>
+                      </div>
+                    </div>
+                    <span class="exp-badge-pill badge-promo-neon">
+                      March 2024 – July 2024
+                    </span>
+                  </div>
+
+                  <div class="exp-location-row">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span>Bajaj Allianz Life Insurance</span>
+                    <span>Kolkata, West Bengal &bull; <strong>Full-Time</strong></span>
+                  </div>
+
+                  <!-- High Performance Promotion Banner -->
+                  <div class="exp-achievement-callout">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <circle cx="12" cy="8" r="7"></circle>
+                      <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                    </svg>
+                    <span>Promoted to Insurance Manager within 4 months due to top-tier performance.</span>
+                  </div>
+
+                  <div class="exp-responsibilities">
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Directing sales cycles and life insurance processes across client touchpoints.</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Consistently achieving sales quotas through tailored financial and insurance solutions.</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Implementing strategic sales pipeline methods and improving long-term client retention.</span>
+                    </div>
                   </div>
                 </div>
-                <span class="role-badge badge-period">March 2024 – July 2024</span>
-              </div>
 
-              <div class="timeline-location">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                  <circle cx="12" cy="10" r="3"></circle>
-                </svg>
-                <span>Kolkata, West Bengal</span>
-              </div>
+                <div class="exp-tags-row">
+                  <span class="exp-skill-tag">Life Insurance Sales</span>
+                  <span class="exp-skill-tag">Fast-Track Promotion</span>
+                  <span class="exp-skill-tag">Pipeline Management</span>
+                  <span class="exp-skill-tag">Client Advisory</span>
+                </div>
+              </article>
 
-              <!-- High Performance Callout -->
-              <div class="achievement-callout">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="8" r="7"></circle>
-                  <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-                </svg>
-                <span>Promoted to Insurance Manager within 4 months due to high performance.</span>
-              </div>
-
-              <div class="timeline-responsibilities">
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Managing sales and life insurance processes across client touchpoints.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Consistently achieving sales targets through tailored insurance solutions.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Implementing strategic methods to enhance sales pipelines and improve client retention.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Building long-term client relationships and upholding high customer satisfaction standards.</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Role 3: Freelancer -->
-          <article class="timeline-item reveal" id="exp-freelance">
-            <div class="timeline-node"></div>
-            
-            <div class="timeline-card">
-              <div class="timeline-card-header">
+              <!-- Card 3: Freelancer -->
+              <article class="exp-card-3d is-left" data-index="2" id="card-freelance" aria-label="Freelance Experience">
                 <div>
-                  <h3 class="role-title">Freelancer</h3>
-                  <div class="company-name">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                      <circle cx="12" cy="12" r="10"></circle>
-                      <line x1="2" y1="12" x2="22" y2="12"></line>
-                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                  <div class="exp-card-header">
+                    <div>
+                      <h3 class="exp-role-title">Freelance Sales &amp; Marketing Specialist</h3>
+                      <div class="exp-company">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <circle cx="12" cy="12" r="10"></circle>
+                          <line x1="2" y1="12" x2="22" y2="12"></line>
+                          <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+                        </svg>
+                        <span>Various Clients — Online &amp; Offline</span>
+                      </div>
+                    </div>
+                    <span class="exp-badge-pill badge-period-neon">
+                      May 2023 – Oct 2023
+                    </span>
+                  </div>
+
+                  <div class="exp-location-row">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                      <circle cx="12" cy="10" r="3"></circle>
                     </svg>
-                    <span>Various Clients — Online / Offline</span>
+                    <span>Kolkata &bull; <strong>Independent Freelance Contractor</strong></span>
+                  </div>
+
+                  <div class="exp-responsibilities">
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Executing freelance sales and marketing campaigns across online and offline channels.</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Direct client communication, requirement gathering, pitch presentation, and deal negotiation.</span>
+                    </div>
+                    <div class="exp-resp-item">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                      </svg>
+                      <span>Providing customized solutions and securing recurring client business partnerships.</span>
+                    </div>
                   </div>
                 </div>
-                <span class="role-badge badge-period">May 2023 – October 2023</span>
-              </div>
 
-              <div class="timeline-responsibilities">
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Executing freelance sales and marketing campaigns across online and offline channels.</span>
+                <div class="exp-tags-row">
+                  <span class="exp-skill-tag">Direct Client Sales</span>
+                  <span class="exp-skill-tag">Campaign Execution</span>
+                  <span class="exp-skill-tag">Deal Closing</span>
+                  <span class="exp-skill-tag">Relationship Building</span>
                 </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Direct client communication, requirement gathering, and deal negotiation.</span>
-                </div>
-                <div class="responsibility-item">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                  <span>Providing customized client solutions and developing repeat business partnerships.</span>
-                </div>
-              </div>
+              </article>
+
             </div>
-          </article>
+          </div>
+
+          <!-- Controls Bar (Prev / Dots / Next) -->
+          <div class="exp-controls-bar">
+            <button class="exp-nav-btn" id="exp-prev-btn" type="button" aria-label="Previous Experience Role" title="Previous Role">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+            </button>
+
+            <div class="exp-dots-container" role="tablist" aria-label="Carousel pagination">
+              <button class="exp-dot active" role="tab" aria-selected="true" data-index="0" aria-label="Go to Sumo Save role"></button>
+              <button class="exp-dot" role="tab" aria-selected="false" data-index="1" aria-label="Go to Bajaj Allianz role"></button>
+              <button class="exp-dot" role="tab" aria-selected="false" data-index="2" aria-label="Go to Freelance role"></button>
+            </div>
+
+            <button class="exp-nav-btn" id="exp-next-btn" type="button" aria-label="Next Experience Role" title="Next Role">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+          </div>
+
+          <div class="exp-drag-hint">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+            <span>Swipe or click side cards to rotate 3D showcase</span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </div>
 
         </div>
 
@@ -1199,6 +1281,9 @@
 
   <!-- Modular Welcome Gate & Spider Drop Intro -->
   <script type="module" src="/welcome-gate.js"></script>
+
+  <!-- Modular 3D Rotating Experience Carousel -->
+  <script type="module" src="/experience-carousel.js"></script>
 
   <!-- Main JavaScript File -->
   <script type="module" src="/script.js"></script>
