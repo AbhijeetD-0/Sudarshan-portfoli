@@ -202,7 +202,7 @@ function initScrollReveal() {
 /* -------------------------------------------------------------------------- */
 function initSkillFilters() {
   const filterButtons = document.querySelectorAll('.filter-btn');
-  const skillCards = document.querySelectorAll('.skill-card');
+  const skillCards = document.querySelectorAll('.skill-card, .skill-category-card');
 
   if (!filterButtons.length || !skillCards.length) return;
 
@@ -449,3 +449,4 @@ function initYear() {
     yearSpan.textContent = new Date().getFullYear();
   }
 }
+
