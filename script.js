@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initMobileMenu();
   initScrollSpy();
   initScrollReveal();
+  initHeroBadges();
   initSkillFilters();
   initContactForm();
   initCopyActions();
@@ -234,8 +235,59 @@ function initSkillFilters() {
 }
 
 /* -------------------------------------------------------------------------- */
+/* Hero Floating Badges Interactive Navigation                               */
+/* -------------------------------------------------------------------------- */
+function initHeroBadges() {
+  const badgeExcel = document.getElementById('hero-badge-excel');
+  const badgeSumosave = document.getElementById('hero-badge-sumosave');
+  const badgeBajaj = document.getElementById('hero-badge-bajaj');
+
+  if (badgeExcel) {
+    badgeExcel.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById('skills');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (badgeSumosave) {
+    badgeSumosave.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Activate SumoSave card (index 0) in the 3D Experience Carousel
+      const tabs = document.querySelectorAll('.exp-tab-btn');
+      if (tabs.length > 0 && typeof tabs[0].click === 'function') {
+        tabs[0].click();
+      }
+      const target = document.getElementById('card-sumosave') || document.getElementById('experience');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
+  if (badgeBajaj) {
+    badgeBajaj.addEventListener('click', (e) => {
+      e.preventDefault();
+      // Activate Bajaj Allianz card (index 1) in the 3D Experience Carousel
+      const tabs = document.querySelectorAll('.exp-tab-btn');
+      if (tabs.length > 1 && typeof tabs[1].click === 'function') {
+        tabs[1].click();
+      }
+      const target = document.getElementById('card-bajaj') || document.getElementById('experience');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+}
+
+/* -------------------------------------------------------------------------- */
 /* Contact Form Validation & Submission Handling                             */
 /* -------------------------------------------------------------------------- */
+const CONTACT_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbygowBGfJj3PI7D7enl8ql3AIQy_-830DY4xeZwuANLX-Cy5VeF2sqnQ9wOlSQr8SaO/exec";
+
 function initContactForm() {
   const form = document.getElementById('contact-form');
   if (!form) return;
@@ -244,7 +296,6 @@ function initContactForm() {
   const emailInput = document.getElementById('email');
   const subjectInput = document.getElementById('subject');
   const messageInput = document.getElementById('message');
-  const formStatus = document.getElementById('form-status');
 
   function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -326,24 +377,53 @@ function initContactForm() {
 
     if (!isValid) return;
 
-    const submitBtn = form.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = `<span>Sending...</span>`;
-    submitBtn.disabled = true;
+    const payload = {
+      name: nameInput.value.trim(),
+      email: emailInput.value.trim(),
+      subject: subjectInput.value.trim(),
+      message: messageInput.value.trim()
+    };
 
-    // Simulate sending & trigger toast notification
+    // 1. Immediately dispatch fetch POST asynchronously in background without awaiting or blocking the thread
+    fetch(CONTACT_WEBHOOK_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    }).catch(err => {
+      console.warn('Background webhook dispatch notice:', err);
+    });
+
+    // Reset the form inputs immediately so no residual data stays on the front face
+    form.reset();
+    [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
+      if (input) setFeedback(input, '');
+    });
+
+    // Within exactly 0.1s (100ms), initiate the 3D card flip animation
     setTimeout(() => {
-      showToast('Thank you! Your message has been prepared. Sudarsan will get back to you shortly.');
-      form.reset();
-      
-      [nameInput, emailInput, subjectInput, messageInput].forEach(input => {
-        setFeedback(input, '');
-      });
-
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
-    }, 800);
+      const flipper = document.getElementById('contact-card-flipper');
+      if (flipper) {
+        flipper.classList.add('is-flipped');
+      }
+    }, 100);
   });
+
+  // Handle "Send Another Message" button to flip smoothly back (0deg) to the input form
+  const sendAnotherBtn = document.getElementById('btn-send-another');
+  if (sendAnotherBtn) {
+    sendAnotherBtn.addEventListener('click', () => {
+      const flipper = document.getElementById('contact-card-flipper');
+      if (flipper) {
+        flipper.classList.remove('is-flipped');
+      }
+      setTimeout(() => {
+        nameInput?.focus();
+      }, 500);
+    });
+  }
 }
 
 /* -------------------------------------------------------------------------- */
